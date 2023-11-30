@@ -1,0 +1,36 @@
+
+class TimeConverter:
+  def outputConvertedTime(time):
+      if isinstance(time, str):
+          return TimeConverter.convertToSeconds(time)
+      elif isinstance(time, int):
+          return TimeConverter.convertToTime(time)
+      else:
+          return "Invalid input"
+
+  def convertToSeconds(time_str):
+      try:
+          hours, minutes, seconds = map(int, time_str.split(':'))
+          total_seconds = hours * 3600 + minutes * 60 + seconds
+          return total_seconds
+      except:
+          return "Invalid time format. Use hh:mm:ss"
+
+  def convertToTime(seconds):
+      try:
+          hours = seconds // 3600
+          minutes = (seconds % 3600) // 60
+          seconds = seconds % 60
+          return f"{hours:02d}:{minutes:02d}:{seconds:02d}" #скорочує до двох значень
+      except:
+          return "Invalid input for conversion to time"
+
+# Переводимо час у кількість секунд
+time_in_seconds = TimeConverter.outputConvertedTime("1:00:10")
+print(f"Час у секундах: {time_in_seconds}")
+
+# Переводимо кількість секунд у час
+time = TimeConverter.outputConvertedTime(3000)
+print(f"Кількість секунд у форматі годин:хвилин:секунди: {time}")
+
+
